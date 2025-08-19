@@ -4,7 +4,6 @@ import MovieCard from '../components/MovieCard';
 import Spinner from '../components/Spinner'; 
 
 function SearchPage() {
-  const apiKey = import.meta.env.VITE_API_KEY;
   const [searchResults, setSearchResults] = useState([]);
   const [searchParams] = useSearchParams();
   const query = searchParams.get("query");
@@ -19,7 +18,7 @@ function SearchPage() {
         setError(null);
         
         try {
-          const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`);
+          const response = await fetch(`/api/search?query=${query}`);
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }

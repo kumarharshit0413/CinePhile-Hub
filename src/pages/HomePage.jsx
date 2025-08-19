@@ -33,7 +33,7 @@ function HomePage() {
       setLoading(true);
       setError(null);
       try {
-        let url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${currentPage}&sort_by=${sortBy}`;
+        let url = `/api/discover?page=${currentPage}&sortBy=${sortBy}`;
 
         if (selectedGenre) {
           url += `&with_genres=${selectedGenre}`;
@@ -45,7 +45,7 @@ function HomePage() {
         }
         const data = await response.json();
         setMovies(data.results);
-        setTotalPages(data.total_pages); // This will now work correctly
+        setTotalPages(data.total_pages);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -53,7 +53,7 @@ function HomePage() {
       }
     };
     fetchMovies();
-  }, [apiKey, currentPage, selectedGenre, sortBy]); // Corrected dependency array
+  }, [currentPage, selectedGenre, sortBy]);
 
   const handleNextPage = () => {
     // Prevent going past the last page

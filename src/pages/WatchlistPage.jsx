@@ -10,7 +10,6 @@ function WatchlistPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { currentUser } = useAuth();
-  const apiKey = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
     const fetchWatchlist = async () => {
@@ -23,7 +22,7 @@ function WatchlistPage() {
             const watchlistIds = docSnap.data().watchlist || [];
             
             const moviePromises = watchlistIds.map(id =>
-              fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`).then(res => {
+              fetch(`/api/getMovies?id=${id}`).then(res => {
                 if (!res.ok) {
                   console.error(`Failed to fetch details for movie ID: ${id}`);
                   return null;
@@ -49,7 +48,7 @@ function WatchlistPage() {
     } else {
         setLoading(false);
     }
-  }, [currentUser, apiKey]);
+  }, [currentUser]);
 
   if (loading) return <Spinner />;
 

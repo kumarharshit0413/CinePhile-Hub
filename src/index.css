@@ -1,7 +1,7 @@
 @import "tailwindcss";
 /* Custom scrollbar for a cleaner look in the movie carousel */
 .custom-scrollbar::-webkit-scrollbar {
-  height: 8px;
+  height: 12px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {

@@ -62,7 +62,8 @@ function DetailPage() {
 
       try {
         // Fetch Movie Details AND Recommendations in one efficient API call
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&append_to_response=recommendations,videos`);
+        
+        const response = await fetch(`/api/getMovies?id=${id}`);
         if (!response.ok) throw new Error('Could not fetch movie details.');
         
         const movieData = await response.json();
